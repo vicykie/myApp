@@ -18,7 +18,7 @@ import java.util.EnumSet;
 public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[0];
+        return new Class<?>[]{ ApplicationContextConfig.class};
     }
 
     @Override
@@ -34,8 +34,8 @@ public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInit
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        //设置初始化参数
-        servletContext.setInitParameter("spring.profile.active",getActiveProfile());
+        //设置初始化参数,环境设置
+        servletContext.setInitParameter("spring.profiles.active",getActiveProfile());
 
         //添加字符编码过滤器
         servletContext.addFilter("characterEncodeFilter", new CharacterEncodingFilter("utf-8",true));
@@ -56,8 +56,8 @@ public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInit
     }
 
     private String getActiveProfile() {
-        String os  = System.getenv("OS");
-       if (os.indexOf("WINDOW")!=-1){
+        String os  = System.getenv("OS").toLowerCase();
+       if (os.indexOf("win")!=-1){
            return "dev";
        }else{
            return "prod";

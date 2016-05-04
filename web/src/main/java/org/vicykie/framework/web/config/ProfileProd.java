@@ -1,5 +1,7 @@
 package org.vicykie.framework.web.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
@@ -13,9 +15,9 @@ import javax.annotation.PostConstruct;
 @PropertySource("classpath:config.prod.properties")
 @Configuration
 public class ProfileProd {
+        private static Logger logger = LogManager.getLogger(ProfileProd.class);
     @PostConstruct
-    public void initProfile(){
-        System.out.println("prod   profile init...");
-
-    }
+        public void initProfile(){
+            logger.info(" prod  env init ..");
+        }
 }
