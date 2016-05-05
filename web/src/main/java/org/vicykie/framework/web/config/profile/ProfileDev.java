@@ -1,4 +1,4 @@
-package org.vicykie.framework.web.config;
+package org.vicykie.framework.web.config.profile;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
