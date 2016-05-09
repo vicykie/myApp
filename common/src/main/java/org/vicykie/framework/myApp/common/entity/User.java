@@ -1,5 +1,6 @@
 package org.vicykie.framework.myApp.common.entity;
 
+import org.springframework.data.annotation.Id;
 import org.vicykie.framework.myApp.common.enums.UserStatus;
 
 import java.util.Date;
@@ -7,7 +8,9 @@ import java.util.Date;
 /**
  * Created by d on 2016/5/5.
  */
+
 public class User {
+    @Id
     private int id;
     private String username;
     private String name;

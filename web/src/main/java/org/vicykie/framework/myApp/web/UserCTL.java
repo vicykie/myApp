@@ -18,7 +18,7 @@ import org.vicykie.framework.myApp.dao.UserDAO;
 @Controller("userCTL")
 public class UserCTL {
     @Autowired
-    @Qualifier("mongoUserDAOImpl")      //根据名称
+    @Qualifier("mongoUserDAO")      //根据名称
     UserDAO userDAO;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -28,8 +28,12 @@ public class UserCTL {
         user.setId(id);
         user.setName("vicykie");
         userDAO.addUser(user);
-        return ResponseVO.data(user);
+        return ResponseVO.data(user, "添加成功");
     }
 
+    @RequestMapping("/test")
+    public String test() {
+        return "user/info";
+    }
 
 }

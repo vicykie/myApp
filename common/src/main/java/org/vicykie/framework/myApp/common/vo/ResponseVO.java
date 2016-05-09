@@ -54,7 +54,8 @@ public class ResponseVO {
     public static ResponseVO error(String rspMsg){
         return new ResponseVO(0,rspMsg);
     }
-    public static ResponseVO data(Object data){
-        return new ResponseVO(0,"",data);
+
+    public static ResponseVO data(Object data, String rspMsg) {
+        return new ResponseVO(0, rspMsg, data);
     }
 }
