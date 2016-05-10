@@ -1,14 +1,15 @@
 package org.vicykie.framework.myApp.common.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.vicykie.framework.myApp.common.enums.UserStatus;
 
 import java.util.Date;
 
 /**
- * Created by d on 2016/5/5.
+ * Created by vicykie on 2016/5/5.
  */
-
+@Document(collection = "user")//指定collection的名字
 public class User {
     @Id
     private int id;

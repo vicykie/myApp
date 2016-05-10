@@ -1,7 +1,7 @@
 package org.vicykie.framework.myApp.common.enums;
 
 /**
- * Created by d on 2016/5/5.
+ * Created by vicykie on 2016/5/5.
  */
 public enum UserStatus {
     ENABLE("启用"),DISABLED("禁用"),DELETED("删除");

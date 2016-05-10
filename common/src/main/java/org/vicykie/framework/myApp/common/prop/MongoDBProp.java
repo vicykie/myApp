@@ -1,9 +1,9 @@
 package org.vicykie.framework.myApp.common.prop;
 
 /**
- * Created by d on 2016/5/4.
+ * Created by vicykie on 2016/5/4.
  */
-public class MongoDBProp{
+public class MongoDBProp {
     private int port;
     private String host;
     private int connectTimeOut;

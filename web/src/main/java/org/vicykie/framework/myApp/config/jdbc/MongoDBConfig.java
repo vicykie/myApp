@@ -1,4 +1,4 @@
-package org.vicykie.framework.myApp.config.mongo;
+package org.vicykie.framework.myApp.config.jdbc;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;

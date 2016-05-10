@@ -1,7 +1,7 @@
 package org.vicykie.framework.myApp.common.vo;
 
 /**
- * Created by d on 2016/5/5.
+ * Created by vicykie on 2016/5/5.
  */
 public class ResponseVO {
     private int code;
@@ -40,19 +40,18 @@ public class ResponseVO {
     }
 
 
-
     public ResponseVO(int code, String rspMsg, Object data) {
         this.code = code;
         this.rspMsg = rspMsg;
         this.data = data;
     }
 
-    public static ResponseVO success(String rspMsg){
-        return new ResponseVO(1,rspMsg);
+    public static ResponseVO success(String rspMsg) {
+        return new ResponseVO(1, rspMsg);
     }
 
-    public static ResponseVO error(String rspMsg){
-        return new ResponseVO(0,rspMsg);
+    public static ResponseVO error(String rspMsg) {
+        return new ResponseVO(0, rspMsg);
     }
 
     public static ResponseVO data(Object data, String rspMsg) {
