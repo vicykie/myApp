@@ -18,7 +18,7 @@ import java.util.Properties;
 public class IFreemarkerConfig implements ViewConfig {
     private static Logger logger = LogManager.getLogger(IFreemarkerConfig.class);
 
-    //注册试图解析器
+    //注册freemarker试图解析器
     @Bean
     public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
