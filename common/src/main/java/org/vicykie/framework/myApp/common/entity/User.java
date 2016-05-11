@@ -2,9 +2,10 @@ package org.vicykie.framework.myApp.common.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.vicykie.framework.myApp.common.enums.UserStatus;
+import org.vicykie.framework.myApp.common.enums.Status;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by vicykie on 2016/5/5.
@@ -17,7 +18,17 @@ public class User {
     private String name;
     private Date createDate = new Date();
     private Date expireDate;
-    private UserStatus status =UserStatus.ENABLE;
+    private Status status = Status.ENABLE;
+
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public int getId() {
         return id;
@@ -59,11 +70,11 @@ public class User {
         this.expireDate = expireDate;
     }
 
-    public UserStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(UserStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }

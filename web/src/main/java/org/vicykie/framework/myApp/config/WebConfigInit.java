@@ -24,7 +24,7 @@ public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInit
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[0];
+        return new Class<?>[]{SpringMVCConfig.class};
     }
 
     @Override
@@ -49,12 +49,12 @@ public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInit
 
         //设置初始化参数,环境设置
         servletContext.setInitParameter("spring.profiles.active", getActiveProfile());
-
     }
 
     /**
-     *根据系统环境变量设置当前应用环境，可以自定义一个系统的环境变量区分
-     * */
+     * 根据系统环境变量设置当前应用环境，可以自定义一个系统的环境变量区分
+     */
+
     private String getActiveProfile() {
         String os = System.getenv("OS").toLowerCase();
         if (os.indexOf("win") != -1) {
@@ -67,7 +67,7 @@ public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInit
     @Override
     protected Filter[] getServletFilters() {
         logger.info("注册字符编码过滤器。");
-        CharacterEncodingFilter filter = new CharacterEncodingFilter("utf-8",true);
+        CharacterEncodingFilter filter = new CharacterEncodingFilter("utf-8", true);
         return new Filter[]{filter};
     }
 

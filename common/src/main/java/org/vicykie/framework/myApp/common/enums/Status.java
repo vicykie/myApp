@@ -3,11 +3,11 @@ package org.vicykie.framework.myApp.common.enums;
 /**
  * Created by vicykie on 2016/5/5.
  */
-public enum UserStatus {
+public enum Status {
     ENABLE("启用"),DISABLED("禁用"),DELETED("删除");
     private String description;
 
-    UserStatus(String description) {
+    Status(String description) {
         this.description = description;
     }
 

@@ -2,6 +2,8 @@ package org.vicykie.framework.myApp.dao.mongo.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.vicykie.framework.myApp.common.entity.User;
 import org.vicykie.framework.myApp.dao.UserDAO;
@@ -12,7 +14,7 @@ import java.util.Set;
  * Created by d on 2016/5/5.
  */
 @Repository("mongoUserDAO")
-public class MongoUserDAOImpl implements UserDAO{
+public class MongoUserDAOImpl implements UserDAO {
     @Autowired
     MongoTemplate template;
 
@@ -29,6 +31,16 @@ public class MongoUserDAOImpl implements UserDAO{
 
     @Override
     public int deleteUser(User user) {
+        template.remove(user);
         return 0;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        Criteria criteria = new Criteria("_id");
+        criteria.is(id);
+        Query query = new Query(criteria);
+
+        return template.findOne(query, User.class);
     }
 }

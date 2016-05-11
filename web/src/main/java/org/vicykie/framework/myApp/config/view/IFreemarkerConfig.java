@@ -24,6 +24,7 @@ public class IFreemarkerConfig implements ViewConfig {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
         viewResolver.setSuffix(FREEMARKER_TEMPLATE_SUFIX);
         viewResolver.setCache(true);
+        viewResolver.setContentType("text/html;charset=UTF-8");
         logger.info("freemarker init...");
         return viewResolver;
     }
