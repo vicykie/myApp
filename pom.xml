@@ -13,12 +13,66 @@
         <spring.version>4.2.5.RELEASE</spring.version>
         <jackson.version>2.5.4</jackson.version>
         <log4j.version>2.5</log4j.version>
+        <druid.version>1.0.1</druid.version>
+        <lombok.version>1.16.6</lombok.version>
+        <nexus.url>http://maven.aliyun.com</nexus.url>
     </properties>
     <modules>
         <module>common</module>
         <module>web</module>
         <module>common-dao</module>
     </modules>
+
+    <!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+    <repositories>
+        <repository>
+            <id>nexus-repos</id>
+            <name>Team Nexus </name>
+            <url>${nexus.url}/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. <repository> <id>nexus-repos</id> <name>Team
+            Nexus Repository</name> <url>http://localhost:8081/nexus/content/groups/public</url>
+            <releases> <enabled>true</enabled> </releases> <snapshots> <enabled>false</enabled>
+            </snapshots> </repository> -->
+
+        <repository>
+            <id>central-repos</id>
+            <name>Central Repository</name>
+            <url>http://repo.maven.apache.org/maven2</url>
+        </repository>
+
+        <repository>
+            <id>central-repos2</id>
+            <name>Central Repository 2</name>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+
+        <!-- 		<repository>
+                    <id>springsource-repos</id>
+                    <name>SpringSource Repository</name>
+                    <url>http://repo.springsource.org/libs-milestone-local</url>
+                </repository>
+         -->
+        <repository>
+            <id>activiti-repos</id>
+            <name>Activiti Repository</name>
+            <url>https://maven.alfresco.com/nexus/content/groups/public</url>
+        </repository>
+
+        <repository>
+            <id>activiti-repos2</id>
+            <name>Activiti Repository 2</name>
+            <url>https://app.camunda.com/nexus/content/groups/public</url>
+        </repository>
+
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -177,6 +231,12 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
                 <version>4.1.0.RELEASE</version>
+            </dependency>
+            <!-- http://mvnrepository.com/artifact/com.alibaba/fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.11</version>
             </dependency>
 
         </dependencies>
