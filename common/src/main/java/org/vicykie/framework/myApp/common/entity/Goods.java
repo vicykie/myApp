@@ -17,6 +17,7 @@ public class Goods {
     private String model;
     private String price;
     private Set<String> picPaths;
+    private String status;
 
     public int getId() {
         return id;
@@ -64,5 +65,13 @@ public class Goods {
 
     public void setPicPaths(Set<String> picPaths) {
         this.picPaths = picPaths;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

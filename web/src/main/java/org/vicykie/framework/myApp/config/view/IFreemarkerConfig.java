@@ -3,6 +3,7 @@ package org.vicykie.framework.myApp.config.view;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
@@ -14,7 +15,7 @@ import java.util.Properties;
  * <p>
  * freemarker解析器配置
  */
-
+@Configuration
 public class IFreemarkerConfig implements ViewConfig {
     private static Logger logger = LogManager.getLogger(IFreemarkerConfig.class);
 
@@ -36,7 +37,7 @@ public class IFreemarkerConfig implements ViewConfig {
         configurer.setDefaultEncoding("utf-8");
         configurer.setTemplateLoaderPath(FREEMARKER_TEMPLATE_LOADER_PATH);
         Properties settings = new Properties();
-        settings.setProperty("template_update_delay", "100");
+        settings.setProperty("template_update_delay", "0");
         settings.setProperty("locale", "zh_CN");
 //        settings.setProperty("template_update_delay","100");
         configurer.setFreemarkerSettings(settings);
