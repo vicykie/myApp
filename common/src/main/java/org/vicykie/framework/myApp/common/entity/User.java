@@ -19,6 +19,8 @@ public class User {
     private Date createDate = new Date();
     private Date expireDate;
     private Status status = Status.ENABLE;
+    private int age;
+    private int score;
 
     private Set<Role> roles;
 
@@ -77,4 +79,32 @@ public class User {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public User(String username, String name, Status status, int score, int age) {
+        this.username = username;
+        this.name = name;
+        this.status = status;
+        this.score = score;
+        this.age = age;
+    }
+
+    public User() {
+    }
+
 }

@@ -15,7 +15,6 @@ import javax.annotation.PostConstruct;
 @Configuration
 //不扫描controller注解  controller交给springMVCconfig管理
 @ComponentScan(basePackages = "org.vicykie.framework", excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class})})
-
 public class ApplicationContextConfig {
     private static Logger logger = LogManager.getLogger(ApplicationContextConfig.class);
 
