@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
-import org.vicykie.framework.myApp.common.entity.User;
+import org.vicykie.framework.myApp.common.entity.authority.User;
 import org.vicykie.framework.myApp.dao.UserDAO;
 
 import java.util.Set;
@@ -21,10 +21,7 @@ public class MongoUserDAOImpl implements UserDAO {
     @Override
     public int addUser(User user) {
         Set<String> collections = template.getCollectionNames();
-        for (String name : collections
-                ) {
-            System.out.println(name);
-        }
+        collections.forEach(System.out::println);
         template.insert(user);
         return 0;
     }

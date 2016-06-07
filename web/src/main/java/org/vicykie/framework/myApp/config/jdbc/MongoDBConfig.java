@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.vicykie.framework.myApp.common.constants.MongoDBKeyConstants;
 import org.vicykie.framework.myApp.common.prop.MongoDBProp;
 
 import java.net.UnknownHostException;
@@ -23,15 +22,16 @@ import java.net.UnknownHostException;
  */
 @Configuration
 @EnableMongoRepositories
-public class MongoDBConfig implements MongoDBKeyConstants {
+public class MongoDBConfig {
     private static Logger logger = LogManager.getLogger(MongoDBConfig.class);
 
     @Bean(name = {"mongoDBProp", "mp", "mongoProp"})
     @Autowired
     public MongoDBProp mongoDBProp(Environment environment) {
         logger.info("mongodb init..");
-        return new MongoDBProp(environment.getProperty(KEY_DB_PORT, Integer.class)
-                , environment.getProperty(KEY_DB_HOST), environment.getProperty(KEY_DB_CONNECT_TIMEOUT, Integer.class), environment.getProperty(KEY_DB_NAME));
+        return new MongoDBProp(environment.getProperty("mongo.port", Integer.class)
+                , environment.getProperty("mongo.host"), environment.getProperty("mongo.connect.timeout", Integer.class),
+                environment.getProperty("mongo.dbName"));
     }
 
     @Bean

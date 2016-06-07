@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.vicykie.framework.myApp.config.view.IFreemarkerConfig;
+import org.vicykie.framework.myApp.config.view.FreemarkerResolverConfig;
 
 import javax.annotation.PostConstruct;
 
@@ -20,7 +20,7 @@ import javax.annotation.PostConstruct;
 //只扫描controller
 @ComponentScan(basePackages = "org.vicykie.framework.myApp.web", useDefaultFilters = false, includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Controller.class})})
 //注册视图解析器
-@Import({IFreemarkerConfig.class})
+@Import({FreemarkerResolverConfig.class})
 public class SpringMVCConfig extends WebMvcConfigurationSupport {
     private static Logger logger = LogManager.getLogger(SpringMVCConfig.class);
 

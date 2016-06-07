@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.vicykie.framework.myApp.common.entity.User;
+import org.vicykie.framework.myApp.common.entity.authority.User;
 import org.vicykie.framework.myApp.common.vo.ResponseVO;
 import org.vicykie.framework.myApp.dao.UserDAO;
 
@@ -24,17 +24,24 @@ public class UserCTL {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
-    public ResponseVO addUser(@PathVariable("id")int id){
+    public ResponseVO<User> addUser(@PathVariable("id") int id) {
         User user = new User();
         user.setId(id);
         user.setName("vicykie");
+        userDAO.addUser(user);
         User u = userDAO.getUserById(id);
-        return ResponseVO.data(u, "获取成功");
+        return ResponseVO.getDataSuccess(u, "获取成功");
     }
 
     @RequestMapping("/test")
     public String test(Model model) {
         model.addAttribute("user", userDAO.getUserById(22));
+        return "user/info";
+    }
+
+    @RequestMapping("/index")
+    public String index(Model model) {
+        model.addAttribute("user", userDAO.getUserById(1));
         return "user/info";
     }
 

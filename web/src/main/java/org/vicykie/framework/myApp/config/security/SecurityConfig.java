@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.vicykie.framework.myApp.handler.LoginFailureHandler;
+import org.vicykie.framework.myApp.handler.LoginSuccessHandler;
 
 import javax.annotation.PostConstruct;
 
@@ -15,11 +16,13 @@ import javax.annotation.PostConstruct;
  * Created by vicykie on 2016/5/10.
  */
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    private static Logger logger = LogManager.getLogger(SpringSecurityConfig.class);
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static Logger logger = LogManager.getLogger(SecurityConfig.class);
 
     @Autowired
     private LoginFailureHandler loginFailureHandler;
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
 
     @PostConstruct
     public void initSecurity() {
@@ -51,8 +54,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index.jsp").permitAll()
                 .antMatchers("/user/**").hasRole("USER")
                 .and()
-                .formLogin().loginPage("/index.jsp").successForwardUrl("/user/22").failureHandler(loginFailureHandler)
-//                .permitAll()
+                .formLogin().loginPage("/index.jsp").loginProcessingUrl("/login").successHandler(loginSuccessHandler).failureHandler(loginFailureHandler)
                 .and().csrf().disable();
 
 //        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

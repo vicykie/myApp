@@ -3,20 +3,20 @@ package org.vicykie.framework.myApp.common.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Set;
+import java.io.Serializable;
 
 /**
  * Created by vicykie on 2016/5/10.
  */
 @Document(collection = "goods")
-public class Goods {
+public class Goods implements Serializable {
     @Id
     private int id;
     private String name;
-    private String descrition;
+    private String description;
     private String model;
     private String price;
-    private Set<String> picPaths;
+
 
     public int getId() {
         return id;
@@ -34,12 +34,12 @@ public class Goods {
         this.name = name;
     }
 
-    public String getDescrition() {
-        return descrition;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrition(String descrition) {
-        this.descrition = descrition;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getModel() {
@@ -58,11 +58,4 @@ public class Goods {
         this.price = price;
     }
 
-    public Set<String> getPicPaths() {
-        return picPaths;
-    }
-
-    public void setPicPaths(Set<String> picPaths) {
-        this.picPaths = picPaths;
-    }
 }

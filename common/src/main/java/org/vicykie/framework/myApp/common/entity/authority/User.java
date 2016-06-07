@@ -1,36 +1,33 @@
-package org.vicykie.framework.myApp.common.entity;
+package org.vicykie.framework.myApp.common.entity.authority;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.vicykie.framework.myApp.common.enums.Status;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by vicykie on 2016/5/5.
  */
 @Document(collection = "user")//指定collection的名字
-public class User {
+
+public class User implements Serializable {
     @Id
+    @Field(value = "id")
     private int id;
     private String username;
     private String name;
+    @Field(value = "create_date")
     private Date createDate = new Date();
     private Date expireDate;
+    @JsonSerialize()
     private Status status = Status.ENABLE;
     private int age;
     private int score;
-
-    private Set<Role> roles;
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+    private Role role;
 
     public int getId() {
         return id;
@@ -94,6 +91,14 @@ public class User {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public User(String username, String name, Status status, int score, int age) {

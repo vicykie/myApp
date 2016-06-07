@@ -1,4 +1,4 @@
-import org.vicykie.framework.myApp.common.entity.User;
+import org.vicykie.framework.myApp.common.entity.authority.User;
 import org.vicykie.framework.myApp.common.enums.Status;
 
 import java.util.ArrayList;

@@ -1,33 +1,20 @@
 package org.vicykie.framework.myApp.common.vo;
 
+import org.vicykie.framework.myApp.common.enums.ResponseStatus;
+
 /**
  * Created by vicykie on 2016/5/5.
  */
-public class ResponseVO {
-    private int code;
+public class ResponseVO<T> {
+    private ResponseStatus code;
     private String rspMsg;
-    private Object data;
+    private T data;
 
-    public ResponseVO(int code, String rspMsg) {
-        this.code = code;
-        this.rspMsg = rspMsg;
-    }
-
-    public Object getData() {
-
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public int getCode() {
-
+    public ResponseStatus getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(ResponseStatus code) {
         this.code = code;
     }
 
@@ -39,22 +26,61 @@ public class ResponseVO {
         this.rspMsg = rspMsg;
     }
 
+    public T getData() {
+        return data;
+    }
 
-    public ResponseVO(int code, String rspMsg, Object data) {
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public ResponseVO(ResponseStatus code, String rspMsg, T data) {
         this.code = code;
         this.rspMsg = rspMsg;
         this.data = data;
     }
 
-    public static ResponseVO success(String rspMsg) {
-        return new ResponseVO(1, rspMsg);
+    public ResponseVO(ResponseStatus code, String rspMsg) {
+        this.code = code;
+        this.rspMsg = rspMsg;
     }
 
-    public static ResponseVO error(String rspMsg) {
-        return new ResponseVO(0, rspMsg);
+    public ResponseVO(ResponseStatus code, T data) {
+        this.code = code;
+        this.data = data;
     }
 
-    public static ResponseVO data(Object data, String rspMsg) {
-        return new ResponseVO(0, rspMsg, data);
+    public static <T> ResponseVO<T> getDataSuccess(T data, String rspMsg) {
+        return new ResponseVO(ResponseStatus.SUC_GET_DATA, rspMsg, data);
     }
+
+    public static ResponseVO getDataError(ResponseStatus code, String rspMsg) {
+        return new ResponseVO(code, rspMsg);
+    }
+
+    public static ResponseVO updateSuccess(String rspMsg) {
+        return new ResponseVO(ResponseStatus.SUC_UPDATE, rspMsg);
+    }
+
+    public static ResponseVO updateError(String rspMsg, ResponseStatus code) {
+        return new ResponseVO(code, rspMsg);
+    }
+
+    public static ResponseVO delSuccess(String rspMsg) {
+        return new ResponseVO(ResponseStatus.SUC_DELETE, rspMsg);
+    }
+
+    public static ResponseVO delError(String rspMsg, ResponseStatus code) {
+        return new ResponseVO(code, rspMsg);
+    }
+
+    public static <T> ResponseVO<T> loginSuccess(T successUrl) {
+        return new ResponseVO(ResponseStatus.SUC_LOGIN, "登录成功", successUrl);
+    }
+
+    public static <T> ResponseVO<T> logoutSuccess(T successUrl) {
+        return new ResponseVO(ResponseStatus.SUC_LOGOUT, "退出成功", successUrl);
+    }
+
+
 }

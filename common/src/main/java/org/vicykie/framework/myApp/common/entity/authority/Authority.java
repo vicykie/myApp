@@ -1,21 +1,26 @@
-package org.vicykie.framework.myApp.common.entity;
+package org.vicykie.framework.myApp.common.entity.authority;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.vicykie.framework.myApp.common.enums.Status;
+
+import java.io.Serializable;
 
 /**
  * Created by vicykie on 2016/5/10.
  */
-@Document(collection = "auth")
-public class Authority {
+@Document(collection = "role_authority")
+public class Authority implements Serializable {
 
     @Id
+    @Field(value = "id")
     private int id;
     private String authName;
     private String description;
     private String resourcePaths;
     private Status status = Status.ENABLE;
+    private Role role;
 
     public int getId() {
         return id;
@@ -55,5 +60,13 @@ public class Authority {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
