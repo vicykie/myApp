@@ -28,8 +28,8 @@ public class UserTokenUtil {
     private final String CLAIMS_ADDRESS = "address";
     private final String CLAIMS_CREATED = "created";
     private final String CLAIMS_ROLES = "roles";
-    private final String CLAIMS_USER_EXPIREDATE = "expire_date";
-    private final String CLAIMS_USER_CREATEDATE = "create_date";
+    private final String CLAIMS_USER_EXPIRE_DATE = "expire_date";
+    private final String CLAIMS_USER_CREATE_DATE = "create_date";
 
     public String generateToken(User user) {
         String username = user.getUsername();
@@ -48,8 +48,8 @@ public class UserTokenUtil {
         claims.put(CLAIMS_USER_NAME, name);
         claims.put(CLAIMS_ADDRESS, address);
         claims.put(CLAIMS_ROLES, role);
-        claims.put(CLAIMS_USER_CREATEDATE, createDate);
-        claims.put(CLAIMS_USER_EXPIREDATE, expireDate);
+        claims.put(CLAIMS_USER_CREATE_DATE, createDate);
+        claims.put(CLAIMS_USER_EXPIRE_DATE, expireDate);
         claims.put(Claims.EXPIRATION, this.generateExpirationDate());
         return this.generateToken(claims);
 
@@ -61,9 +61,9 @@ public class UserTokenUtil {
         final Claims claims = this.getClaimsFromToken(token);
         user.setUsername(claims.getSubject());
         user.setName((String) claims.get(CLAIMS_USER_NAME));
-        Object s = claims.get(CLAIMS_USER_CREATEDATE);
-        user.setCreateDate(new Date((Long) claims.get(CLAIMS_USER_CREATEDATE)));
-        user.setExpireDate(new Date((Long) claims.get(CLAIMS_USER_EXPIREDATE)));
+        Object s = claims.get(CLAIMS_USER_CREATE_DATE);
+        user.setCreateDate(new Date((Long) claims.get(CLAIMS_USER_CREATE_DATE)));
+        user.setExpireDate(new Date((Long) claims.get(CLAIMS_USER_EXPIRE_DATE)));
         user.setRole((Role) claims.get(CLAIMS_ROLES));
         return user;
     }
