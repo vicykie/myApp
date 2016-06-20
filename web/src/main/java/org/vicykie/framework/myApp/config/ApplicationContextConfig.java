@@ -19,7 +19,7 @@ public class ApplicationContextConfig {
     private static Logger logger = LogManager.getLogger(ApplicationContextConfig.class);
 
     @PostConstruct
-    public void initApp() {
+    public void initApplicationContext() {
         logger.info("Spring applicationContext init.....");
     }
 }

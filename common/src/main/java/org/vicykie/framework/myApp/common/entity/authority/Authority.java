@@ -2,7 +2,7 @@ package org.vicykie.framework.myApp.common.entity.authority;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.security.core.GrantedAuthority;
 import org.vicykie.framework.myApp.common.enums.Status;
 
 import java.io.Serializable;
@@ -11,22 +11,21 @@ import java.io.Serializable;
  * Created by vicykie on 2016/5/10.
  */
 @Document(collection = "role_authority")
-public class Authority implements Serializable {
+public class Authority implements Serializable, GrantedAuthority {
 
     @Id
-    @Field(value = "id")
-    private int id;
+    private String id;
     private String authName;
     private String description;
     private String resourcePaths;
     private Status status = Status.ENABLE;
     private Role role;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -68,5 +67,10 @@ public class Authority implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String getAuthority() {
+        return authName;
     }
 }

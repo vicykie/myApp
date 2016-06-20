@@ -1,4 +1,4 @@
-package org.vicykie.framework.myApp.handler;
+package org.vicykie.framework.myApp.auth.handler;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         String successUrl = environment.getProperty("login.success.url");
         //登录成功处理
         if (RequestUtil.isAjax(request)) {
-
+            //authentication.getDetails();
             //ajax返回json数据
             PrintWriter writer = response.getWriter();
             response.setHeader("Content-Type", "html/json;charset=UTF-8");

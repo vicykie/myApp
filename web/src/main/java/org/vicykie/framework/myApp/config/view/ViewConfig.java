@@ -5,9 +5,9 @@ package org.vicykie.framework.myApp.config.view;
  * <p>
  * view constants
  */
-public interface ViewConfig {
-    String JSP_VIEW_RESOLER_PREFIX = "/WEB-INF/views/";
-    String JSP_VIEW_RESOLER_SUFIX = ".jsp";
+public class ViewConfig {
+    String JSP_RESOLVER_PREFIX = "/WEB-INF/views/";
+    String JSP_RESOLVER_SUFFIX = ".jsp";
     String FREEMARKER_TEMPLATE_LOADER_PATH = "/WEB-INF/template/";
-    String FREEMARKER_TEMPLATE_SUFIX = ".ftl";
+    String FREEMARKER_TEMPLATE_SUFFIX = ".ftl";
 }

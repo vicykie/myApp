@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.vicykie.framework.myApp.common.entity.authority.User;
 import org.vicykie.framework.myApp.dao.UserDAO;
 
-import java.util.Set;
-
 /**
  * Created by d on 2016/5/5.
  */
@@ -20,8 +18,8 @@ public class MongoUserDAOImpl implements UserDAO {
 
     @Override
     public int addUser(User user) {
-        Set<String> collections = template.getCollectionNames();
-        collections.forEach(System.out::println);
+//        Set<String> collections = template.getCollectionNames();
+//        collections.forEach(System.out::println);
         template.insert(user);
         return 0;
     }
@@ -40,4 +38,14 @@ public class MongoUserDAOImpl implements UserDAO {
 
         return template.findOne(query, User.class);
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        Criteria criteria = new Criteria("username");
+        criteria.is(username);
+        Query query = new Query(criteria);
+//        Query query = new Query(criteria);
+        return template.findOne(query, User.class);
+    }
+
 }

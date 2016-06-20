@@ -1,8 +1,12 @@
 package org.vicykie.framework.myApp.common.enums;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.vicykie.framework.myApp.common.serializer.Serializer2Ordinal;
+
 /**
  * Created by vicykie on 2016/5/5.
  */
+@JsonSerialize(using = Serializer2Ordinal.class)
 public enum Status {
     ENABLE("启用"),DISABLED("禁用"),DELETED("删除");
     private String description;

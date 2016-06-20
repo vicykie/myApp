@@ -1,4 +1,4 @@
-package org.vicykie.framework.myApp.handler;
+package org.vicykie.framework.myApp.auth.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;

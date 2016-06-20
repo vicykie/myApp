@@ -15,14 +15,14 @@ import java.util.Properties;
  * freemarker解析器配置
  */
 
-public class FreemarkerResolverConfig implements ViewConfig {
+public class FreemarkerResolverConfig extends ViewConfig {
     private static Logger logger = LogManager.getLogger(FreemarkerResolverConfig.class);
 
     //注册freemarker试图解析器
     @Bean
     public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
-        viewResolver.setSuffix(FREEMARKER_TEMPLATE_SUFIX);
+        viewResolver.setSuffix(FREEMARKER_TEMPLATE_SUFFIX);
         viewResolver.setCache(true);
         viewResolver.setContentType("text/html;charset=UTF-8");
         logger.info("freemarker init...");

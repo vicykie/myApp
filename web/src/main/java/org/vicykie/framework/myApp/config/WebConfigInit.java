@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 import java.util.EnumSet;
 
 /**
- * Created by vicyk on 2016/5/3.
+ * Created by vicykie on 2016/5/3.
  */
 @Order(1)
 public class WebConfigInit extends AbstractAnnotationConfigDispatcherServletInitializer {

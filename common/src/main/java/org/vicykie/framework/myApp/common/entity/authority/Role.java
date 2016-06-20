@@ -18,7 +18,7 @@ import java.util.Set;
 public class Role implements Serializable {
     @Id
     @Field(value = "id")
-    private int id;
+    private String id;
     private String roleName;
     private String description;
     private Status status = Status.ENABLE;
@@ -35,11 +35,11 @@ public class Role implements Serializable {
         this.authorities = authorities;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

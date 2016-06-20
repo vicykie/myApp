@@ -19,7 +19,6 @@
         <module>web</module>
         <module>common-dao</module>
     </modules>
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>junit</groupId>
@@ -183,33 +182,48 @@
                 <artifactId>spring-security-config</artifactId>
                 <version>4.1.0.RELEASE</version>
             </dependency>
+            <!-- http://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+
+            <!-- http://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt -->
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>1.0.4.RELEASE</version>
             </dependency>
             <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>jstl-impl</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>jstl</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>taglibs</groupId>
-                <artifactId>standard</artifactId>
-                <version>1.1.2</version>
-                <scope>provided</scope>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.6.0</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jackson-databind</artifactId>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.2.12</version>
             </dependency>
+            <!--
+                        <dependency>
+                            <groupId>com.github.shiver-me-timbers</groupId>
+                            <artifactId>smt-spring-security-stateless</artifactId>
+                            <version>2.0</version>
+                        </dependency>-->
         </dependencies>
-    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

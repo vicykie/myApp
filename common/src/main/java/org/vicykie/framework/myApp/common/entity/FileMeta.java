@@ -13,7 +13,7 @@ import java.util.Date;
 @Document(collection = "file_meta")
 public class FileMeta implements Serializable {
     @Id
-    private int id;
+    private String id;
     private String path;
     private int size;
     private FileContentType type;
@@ -22,11 +22,11 @@ public class FileMeta implements Serializable {
     private String diskLocation;
     private Date uploadDate = new Date();
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,21 +1,28 @@
 package org.vicykie.framework.myApp.common.prop;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by vicykie on 2016/5/4.
+ * mongoDb 相关配置
  */
-public class MongoDBProp {
+@Component
+public class MongoDBConfiguration {
+
+
     private int port;
     private String host;
     private int connectTimeOut;
     private String dbName;
 
-
-    public MongoDBProp(int port, String host, int connectTimeOut, String dbName) {
-
-        this.port = port;
-        this.host = host;
-        this.connectTimeOut = connectTimeOut;
-        this.dbName = dbName;
+    @Autowired
+    protected MongoDBConfiguration(Environment environment) {
+        this.port = environment.getProperty("mongo.port", Integer.class);
+        this.host = environment.getProperty("mongo.host");
+        this.connectTimeOut = environment.getProperty("mongo.connect.timeout", Integer.class);
+        this.dbName = environment.getProperty("mongo.dbName");
     }
 
     public int getPort() {

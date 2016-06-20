@@ -1,4 +1,4 @@
-package org.vicykie.framework.myApp.web;
+package org.vicykie.framework.myApp.user.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,7 +26,7 @@ public class UserCTL {
     @ResponseBody
     public ResponseVO<User> addUser(@PathVariable("id") int id) {
         User user = new User();
-        user.setId(id);
+//        user.setId(id);
         user.setName("vicykie");
         userDAO.addUser(user);
         User u = userDAO.getUserById(id);

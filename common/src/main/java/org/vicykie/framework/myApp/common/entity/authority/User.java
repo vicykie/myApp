@@ -1,48 +1,103 @@
 package org.vicykie.framework.myApp.common.entity.authority;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.vicykie.framework.myApp.common.enums.Status;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 /**
  * Created by vicykie on 2016/5/5.
  */
 @Document(collection = "user")//指定collection的名字
-
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
     @Id
-    @Field(value = "id")
-    private int id;
+    private String id;
     private String username;
+    //    @JsonIgnore
+    private String password;
     private String name;
-    @Field(value = "create_date")
-    private Date createDate = new Date();
-    private Date expireDate;
-    @JsonSerialize()
-    private Status status = Status.ENABLE;
     private int age;
     private int score;
     private Role role;
+    @Field(value = "create_date")
+    private Date createDate = new Date();
+    @Field("expire_date")
+    private Date expireDate;
+    @Field("last_password_reset")
+    @JsonIgnore
+    private Date lastPasswordReset;
+    private Status status = Status.ENABLE;
+    private String salt;
+    private String address;
+    private boolean isLocked;
 
-    public int getId() {
-        return id;
+    public User(String username, String name, Status status, int score, int age) {
+        this.username = username;
+        this.name = name;
+        this.status = status;
+        this.score = score;
+        this.age = age;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public User() {
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -101,15 +156,35 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public User(String username, String name, Status status, int score, int age) {
-        this.username = username;
-        this.name = name;
-        this.status = status;
-        this.score = score;
-        this.age = age;
+    public String getSalt() {
+        return salt;
     }
 
-    public User() {
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getLastPasswordReset() {
+        return lastPasswordReset;
+    }
+
+    public void setLastPasswordReset(Date lastPasswordReset) {
+        this.lastPasswordReset = lastPasswordReset;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
 }
