@@ -196,7 +196,12 @@ public class UserTokenUtil {
 
     public static void main(String[] args) {
         UserTokenUtil t = new UserTokenUtil();
-        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWN5a2llIiwiYXVkIjoid2ViIiwiYWRkcmVzcyI6bnVsbCwiZXhwaXJlX2RhdGUiOjE1Mjg4ODQzMjE0NDYsImNyZWF0ZWQiOjE0NjYwNjczMzkzOTIsInJvbGVzIjpudWxsLCJuYW1lIjoidmljeWtpZSIsImNyZWF0ZV9kYXRlIjoxNDY1ODEyMzIxNDQ2LCJleHAiOjE0NjY2NzIxMzl9.pzJw5F2nVHWKDEVBX1ZaC1-cAy0o9jw47wo32HRZd3SbSfplyq_piDRsUB5qPiAwkbDoPlXarSLA5-O7VUCJsg";
+        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWN5a2" +
+                "llIiwiYXVkIjoid2ViIiwiYWRkcmVzcyI6bnVsbCwiZXhwaXJlX2RhdGUiOjE1Mj" +
+                "g4ODQzMjE0NDYsImNyZWF0ZWQiOjE0NjYwNjczMzkzOTIsInJvbGVzIjpudWxsLC" +
+                "JuYW1lIjoidmljeWtpZSIsImNyZWF0ZV9kYXRlIjoxNDY1ODEyMzIxNDQ2LCJleHAi" +
+                "OjE0NjY2NzIxMzl9.pzJw5F2nVHWKDEVBX1ZaC1-cAy0o9jw47wo32HRZd3SbSfply" +
+                "q_piDRsUB5qPiAwkbDoPlXarSLA5-O7VUCJsg";
         User user = t.parseToken(token);
         System.out.println(user);
     }

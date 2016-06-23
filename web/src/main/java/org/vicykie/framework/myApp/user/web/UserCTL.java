@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.vicykie.framework.myApp.common.entity.authority.User;
 import org.vicykie.framework.myApp.common.vo.ResponseVO;
 import org.vicykie.framework.myApp.dao.UserDAO;
@@ -41,6 +38,13 @@ public class UserCTL {
 
     @RequestMapping("/index")
     public String index(Model model) {
+        model.addAttribute("user", userDAO.getUserById(1));
+        return "user/info";
+    }
+
+    @RequestMapping(value = "/t", method = RequestMethod.PATCH)
+    public String tes(Model model, @RequestBody Object statisticData) {
+        System.out.println(statisticData != null);
         model.addAttribute("user", userDAO.getUserById(1));
         return "user/info";
     }
