@@ -10,4 +10,5 @@ public class ViewConfig {
     String JSP_RESOLVER_SUFFIX = ".jsp";
     String FREEMARKER_TEMPLATE_LOADER_PATH = "/WEB-INF/template/";
     String FREEMARKER_TEMPLATE_SUFFIX = ".ftl";
+
 }

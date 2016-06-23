@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Hello World!</h2>
-<form action="/login" method="post">
+<form action="/auth/login" method="post">
     <c:if test="${param.error != null}">
         <p>
             Invalid username and password.

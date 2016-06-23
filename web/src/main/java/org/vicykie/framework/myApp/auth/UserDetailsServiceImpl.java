@@ -1,5 +1,7 @@
 package org.vicykie.framework.myApp.auth;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +15,7 @@ import org.vicykie.framework.myApp.dao.UserDAO;
  */
 @Component("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
+    private static Logger logger = LogManager.getLogger(UserDetailsServiceImpl.class);
     private final AccountStatusUserDetailsChecker checker = new AccountStatusUserDetailsChecker();
     @Autowired
     UserDAO userDAO;
@@ -21,6 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDAO.getUserByUsername(username);
         if (user == null) throw new UsernameNotFoundException("user not found");
+        logger.info("查询用户。。。");
         checker.check(user);
         return user;
     }

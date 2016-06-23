@@ -24,6 +24,7 @@ import org.vicykie.framework.myApp.auth.handler.LoginFailureHandler;
 import org.vicykie.framework.myApp.auth.handler.LoginSuccessHandler;
 import org.vicykie.framework.myApp.auth.handler.TokenAuthenticationProcessingFilter;
 import org.vicykie.framework.myApp.common.util.AppPasswordEncoder;
+import org.vicykie.framework.myApp.common.util.UserTokenUtil;
 
 import javax.annotation.PostConstruct;
 
@@ -46,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UnAuthenticationEntryPoint unAuthenticationEntryPoint;
     @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
-
+    @Autowired
+    private UserTokenUtil tokenHandler;
     @PostConstruct
     public void initSecurity() {
         logger.info("security init .....");
@@ -72,8 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().httpBasic();
         // custom JSON based authentication by POST of
         // {"username":"<name>","password":"<password>"} which sets the token header upon authentication
-        TokenAuthenticationProcessingFilter filter = new TokenAuthenticationProcessingFilter("/auth/login", userDetailsService,
-                tokenAuthenticationService, authenticationManagerBean());
+        TokenAuthenticationProcessingFilter filter = new TokenAuthenticationProcessingFilter("/auth/login"
+                , authenticationManagerBean(), tokenHandler);
         filter.setAuthenticationFailureHandler(loginFailureHandler);
         filter.setAuthenticationSuccessHandler(loginSuccessHandler);
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
